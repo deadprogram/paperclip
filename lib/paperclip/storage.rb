@@ -192,6 +192,7 @@ module Paperclip
       # Returns representation of the data of the file assigned to the given
       # style, in the format most representative of the current storage.
       def to_file style = default_style
+        return nil if not exists?(style)
         return @queued_for_write[style] if @queued_for_write[style]
         file = Tempfile.new(path(style))
         file.write(AWS::S3::S3Object.value(path(style), bucket_name))
