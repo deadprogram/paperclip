@@ -221,7 +221,7 @@ module Paperclip
       end
     rescue Exception => msg
       # in the case of an exception, just add to activerecord base errors, and return so we can skip to the next one
-      add_to_base msg
+      @instance.errors.add_to_base msg
       return true
     end
 
